@@ -53,7 +53,7 @@ def lookup(chord):
 
         ""          : ["", "", "", "", "", ""],
         "A"         : ["can","can","could", "can't", "", "couldn't"],
-        "O"         : ["", "", "", "", "", ""],
+        "O"         : ["have", "has", "had", "haven't", "hasn't", "hadn't"],
         "E"         : ["really","really","really"],
         "U"         : ["must","must", "must have", "must not", "", "must not have"],
         "AO"        : ["want to", "wants to", "wanted to", "don't want to", "doesn't want to", "didn't want to"],
@@ -191,9 +191,11 @@ def lookup(chord):
             if pasttense:
                 if modal:    
                     if modalhashave:
-                        output.append(modalverbs[modalverb][modalverbvalue+2] + " " + irregularverbs[verb][4])
+                        output.append(modalverbs[modalverb][modalverbvalue+2]) 
+                        output.append(irregularverbs[verb][4])
                     else:
-                        output.append(modalverbs[modalverb][modalverbvalue+2] + " " + irregularverbs[verb][0])
+                        output.append(modalverbs[modalverb][modalverbvalue+2]) 
+                        output.append(irregularverbs[verb][0])
                 else:    
                     if pronouns[pronoun][1] == 1 and pronouns[pronoun][2] == 1:
                         output.append(irregularverbs[verb][5])
@@ -205,9 +207,11 @@ def lookup(chord):
             else:
                 if modal:
                     if thirdsingular:
-                        output.append(modalverbs[modalverb][modalverbvalue+1] + " " + irregularverbs[verb][0])
+                        output.append(modalverbs[modalverb][modalverbvalue+1])
+                        output.append(irregularverbs[verb][0])
                     else:
-                        output.append(modalverbs[modalverb][modalverbvalue] + " " + irregularverbs[verb][0])
+                        output.append(modalverbs[modalverb][modalverbvalue]) 
+                        output.append(irregularverbs[verb][0])
                 else:
                     if pronouns[pronoun][2] == 2:
                         output.append(irregularverbs[verb][2])
@@ -225,24 +229,33 @@ def lookup(chord):
             if pasttense:
                 if modal:
                     if modalhashave:
-                        output.append(modalverbs[modalverb][modalverbvalue+2] + " " + verbs[verb][1])
+                        output.append(modalverbs[modalverb][modalverbvalue+2]) 
+                        output.append(verbs[verb][1])
                     else:
-                        output.append(modalverbs[modalverb][modalverbvalue+2] + " " + verbs[verb][0])
+                        output.append(modalverbs[modalverb][modalverbvalue+2]) 
+                        output.append(verbs[verb][0])
                 else:
                     output.append(verbs[verb][1])
             
             else:
                 if modal:
                     if thirdsingular:
-                        output.append(modalverbs[modalverb][modalverbvalue+1] + " " + verbs[verb][0])
+                        output.append(modalverbs[modalverb][modalverbvalue+1]) 
+                        output.append(verbs[verb][0])
                     else:
-                        output.append(modalverbs[modalverb][modalverbvalue] + " " + verbs[verb][0])
+                        output.append(modalverbs[modalverb][modalverbvalue]) 
+                        output.append(verbs[verb][0])
                 else:
                     if thirdsingular:
                         output.append(verbs[verb][0] + "s")
                     else:
                         output.append(verbs[verb][0])
 
+    # Handling present perfect tense
+    if modalverbs[modalverb][0] == "have":
+        output.pop()
+        if irregularverb: output.append(irregularverbs[verb][4])
+        else: output.append(verbs[verb][1])
 
     # Add optional extra word if required
     if addextra:
