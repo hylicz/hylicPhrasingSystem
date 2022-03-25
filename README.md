@@ -5,8 +5,12 @@ I ripped of JadeGG's system (https://github.com/Jade-GG/plover_phrasing) and man
 
 To do:
 →Annotate my code
+
 →Finish modal verbs
+
 →Add more verbs
+
 →Implement multichord functions
+
 
 I don't have much of a clue about how Github works, but there we go!
